@@ -28,7 +28,6 @@ public class App {
     turno=new GatoControl();
     
 do{
-  System.out.println("si sirve git wii regresa");
  System.out.println("1.Jugar");
  System.out.println("2.Reset");
    
