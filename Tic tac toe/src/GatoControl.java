@@ -74,11 +74,11 @@ public void hayMostrarGanador(){
  }else if(hayGanador()==true){
       if(getFicha()=='X'){
 
-            color ="Rojo";
-      }else{
+            color ="rojo";
+      }else if(hayGanador()==false){
  
-        color ="Negro";
-     System.out.println(" Jugador "+color+" gano el juego");
+        color ="negro";
+     System.out.println(" Jugador "+color+" gano el juego.");
       }
  }
  
@@ -129,27 +129,26 @@ public boolean colocar(char ficha,int posicion){
 
 public boolean verificaFichaGanadora(){
    
-    
     if(circulos.get(0)==circulos.get(1) && circulos.get(0)==circulos.get(2)){
        
         ganador=true;
-        setGanador(ganador);
+      
     } else if (circulos.get(3)==circulos.get(4) && circulos.get(3)==circulos.get(5)){
         
         ganador=true;
-        setGanador(ganador);
+      
     } else if (circulos.get(6)==circulos.get(7) && circulos.get(6)==circulos.get(8)){
       
         ganador=true;
-        setGanador(ganador);
+    
     } else if (circulos.get(0)==circulos.get(3) && circulos.get(0)==circulos.get(6)){
        
         ganador=true;
-        setGanador(ganador);
+  
     } else if (circulos.get(1)==circulos.get(4) && circulos.get(1)==circulos.get(7)){
         
         ganador=true;
-        setGanador(ganador);
+       
     } else if (circulos.get(2)==circulos.get(5) && circulos.get(2)==circulos.get(8)){
         
         ganador=true;
@@ -157,14 +156,16 @@ public boolean verificaFichaGanadora(){
     } else if (circulos.get(0)==circulos.get(4) && circulos.get(0)==circulos.get(8)){
         
         ganador=true;
-        setGanador(ganador);
+       
     } else if (circulos.get(2)==circulos.get(4) && circulos.get(2)==circulos.get(6)){
         
         ganador=true;
-        setGanador(ganador);
+        
     }
 
-    return false;
+    setGanador(ganador);
+
+    return ganador;
 } 
 
 public void mostrar(){

@@ -24,6 +24,7 @@ public class App {
     
     juego = new GatoControl();
     tablero = new GatoView();
+ 
 
     do {
       System.out.println("1.Jugar");
@@ -63,7 +64,7 @@ public class App {
 
           break;
       }
-    } while (juego.hayGanador()==true);
+    } while (!juego.hayGanador());
   }
 
 
