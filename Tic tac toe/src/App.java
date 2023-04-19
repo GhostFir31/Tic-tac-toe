@@ -39,26 +39,27 @@ public class App {
 
           if(posicion>0 && posicion<=9){
 
-          if (juego.getTurno() == true) {
+         // if (juego.getTurno() == true) {
 
             juego.colocarFicha(posicion);
 
             tablero.dibujarFicha(posicion, juego);
             
             ganador=juego.verificaFichaGanadora();
+
             juego.hayMostrarGanador();
 
             juego.cambiarJugador();
 
-          } else {
+         /*  } else {
 
             juego.colocarFicha(posicion);
             tablero.dibujarFicha(posicion, juego);
-            juego.verificaFichaGanadora();
+            ganador=juego.verificaFichaGanadora();
             juego.hayMostrarGanador();
 
             juego.cambiarJugador();
-          }
+          }*/
           juego.mostrar();
         }else{
 
