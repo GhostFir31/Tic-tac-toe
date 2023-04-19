@@ -3,27 +3,38 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
 
-
-
 public class GatoControl {
     
- private   int circulo;
-
- private   int x;
-
  private boolean turno;
  private boolean ganador;
+ private char ficha;
 
- ArrayList <Boolean> circulos;
+ ArrayList <Character> circulos;
 
 public GatoControl(){
 
     turno=true;
     ganador=false;
-    circulos=new ArrayList<>(Collections.nCopies(9, false));
+    ficha='n';
+    circulos=inicializaTablero();
 
 }
 
+public ArrayList<Character> inicializaTablero(){
+
+    circulos=new ArrayList<>(Collections.nCopies(9, null));
+
+return circulos;
+
+}
+
+public void cambiarJugador() {
+    if (getTurno() == true) {
+      setTurno(false);
+    } else {
+      setTurno(true);
+    }
+  }
 public void setTurno(boolean turno){
 
 this.turno=turno;
@@ -48,33 +59,134 @@ public boolean hayGanador(boolean ganador){
         
     }
 
+public char getFicha(){
+
+return ficha;
+
+}
+
+public void hayMostrarGanador(){
+ String color;
+ if(hayGanador(ganador)==false){
+
+   System.out.println("No hay Ganador");
+
+ }else{
+      if(getFicha()=='X'){
+
+            color ="Rojo";
+      }else{
+ 
+        color ="Negro";
+
+      }
+    System.out.println(" Jugador "+color+" gano el juego");
+
+ }
+ 
+}
+    
 public boolean colocarFicha(int posicion){
-
-if(circulos.get(posicion)==true){
-
-    return true;
-
+char ficha;
+//colobora si esta vacio el espacio ocupado    
+if(circulos.get(posicion-1)==null){
+ 
+    if(getTurno()==true){
+        ficha='X';
+        
+         colocar(ficha,posicion);
+          
+        }else
+        {
+            ficha='O';
+            colocar(ficha,posicion);
+         circulos.set(posicion-1,ficha);
+        
+        }
+   return true;
 }else{
-
+ System.out.println("Espacio no valido puesto que un jugador ya tomo ese lugar");
  return false;
+}
 
 }
-//verifica si esta libre el espacio
+
+public boolean colocar(char ficha,int posicion){
+    //ojo con los turnos 
+    if(getTurno()==true){      
+
+        circulos.set(posicion-1,ficha);
+
+        return true;
+
+        }else
+        {
+
+         circulos.set(posicion-1,ficha);
+
+         return false;
+
+        }
 }
+
+public boolean verificaFichaGanadora(){
+
+    if(circulos.get(0)==circulos.get(1) && circulos.get(0)==circulos.get(2)){
+       
+        ganador=true;
+    } else if (circulos.get(3)==circulos.get(4) && circulos.get(3)==circulos.get(5)){
+        
+        ganador=true;
+    } else if (circulos.get(6)==circulos.get(7) && circulos.get(6)==circulos.get(8)){
+      
+        ganador=true;
+    } else if (circulos.get(0)==circulos.get(3) && circulos.get(0)==circulos.get(6)){
+       
+        ganador=true;
+    } else if (circulos.get(1)==circulos.get(4) && circulos.get(1)==circulos.get(7)){
+        
+        ganador=true;
+    } else if (circulos.get(2)==circulos.get(5) && circulos.get(2)==circulos.get(8)){
+        
+        ganador=true;
+    } else if (circulos.get(0)==circulos.get(4) && circulos.get(0)==circulos.get(8)){
+        
+        ganador=true;
+    } else if (circulos.get(2)==circulos.get(4) && circulos.get(2)==circulos.get(6)){
+        
+        ganador=true;
+    } else {
+      
+        ganador=false;
+    }
+
+    return ganador;
+} 
 
 public void mostrar(){
-//ojo que se puede solo imprimir lso primeros 3 valores 3 veces
-for(int j=0;j<3;j++){
-for(int i=0;i<3;i++){
+//ojo que se puede solo imprimir los primeros 3 valores 3 veces
 
-System.out.print("  "+circulos.get(i)+"  ");
-
-}
+System.out.print("  "+circulos.get(0)+"  ");
+System.out.print("  "+circulos.get(1)+"  ");
+System.out.print("  "+circulos.get(2)+"  ");
 
 System.out.println(" ");
+
+System.out.print("  "+circulos.get(3)+"  ");
+System.out.print("  "+circulos.get(4)+"  ");
+System.out.print("  "+circulos.get(5)+"  ");
+
+System.out.println(" ");
+
+System.out.print("  "+circulos.get(6)+"  ");
+System.out.print("  "+circulos.get(7)+"  ");
+System.out.print("  "+circulos.get(8)+"  ");
+
+System.out.println(" ");
+
 }
-}
-public void reset(GatoControl jugador){
+
+public void reset(){
 
 Scanner leer=new Scanner(System.in);
 
@@ -89,13 +201,15 @@ opcion=leer.nextInt();
 
 switch(opcion){
 
-case 1: GatoView juego=new GatoView();
+case 1: GatoView tablero=new GatoView();
+        GatoControl juego=new GatoControl(); 
               juego.reset();
+              tablero.reset();
          break;
 case 2: System.out.println("Turno concedido");
-         jugador.setTurno(true);
+         setTurno(true);
          break;
-case 3: System.out.println("ganador:" + jugador.hayGanador(ganador) );
+case 3: System.out.println("ganador:" + hayGanador(ganador) );
          break;
 
 case 4: System.out.println("Salir");

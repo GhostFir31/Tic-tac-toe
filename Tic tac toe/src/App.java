@@ -1,77 +1,79 @@
 import java.util.Scanner;
 
 public class App {
-  
+
   private Scanner leer = new Scanner(System.in);
 
-  private GatoView tablero;//juego
+  private GatoView tablero; // juego
 
-  private GatoControl juego;//turno /jugador
-  
-  private GatoControl turno;
+  private GatoControl juego; // turno /jugador
+
+ // private GatoControl turno;
 
   private int posicion;
 
   private int opcion;
 
   public static void main(String[] args) throws Exception {
-   
-    App App =new App();
+    App App = new App();
 
-     App.iniciarJuego();
-   
+    App.iniciarJuego();
   }
 
-  public void iniciarJuego(){
-   
+  public void iniciarJuego() {
     tablero = new GatoView();
-    turno=new GatoControl();
-    
-do{
- System.out.println("1.Jugar");
- System.out.println("2.Reset");
+    juego = new GatoControl();
+    boolean ganador=false;
+
+    do {
+      System.out.println("1.Jugar");
+      System.out.println("2.Reset");
+
+      opcion = leer.nextInt();
+
+      switch (opcion) {
+        case 1:
+          System.out.println("Introduzca La posicion que se desea del 1 al 9");
+
+          posicion = leer.nextInt();
+
+          if(posicion>0 && posicion<=9){
+
+          if (juego.getTurno() == true) {
+
+            juego.colocarFicha(posicion);
+
+            tablero.dibujarFicha(posicion, juego);
+            
+            ganador=juego.verificaFichaGanadora();
+            juego.hayMostrarGanador();
+
+            juego.cambiarJugador();
+
+          } else {
+
+            juego.colocarFicha(posicion);
+            tablero.dibujarFicha(posicion, juego);
+            juego.verificaFichaGanadora();
+            juego.hayMostrarGanador();
+
+            juego.cambiarJugador();
+          }
+          juego.mostrar();
+        }else{
 
 
-   
-   opcion=leer.nextInt();
-
-   switch(opcion){
-
-    case 1:System.out.println("Introduzca La posicion que se desea del 1 al 9");
-     
-     posicion=leer.nextInt();
-
-     if(turno.getTurno()==true){
-
-     tablero.dibujarFicha(posicion,turno);
-     
-     cambiarJugador(turno);
-    }
-    else{
-
-     tablero.dibujarFicha(posicion,turno);
-     
-       cambiarJugador(turno);
-     }
-     turno.mostrar();
-     break;
-     case 2: tablero.reset();
-             break;
-    }
-    }while(posicion!=10);
-
+          System.out.println("Solo se puede con numeros del 1 al 9");
+       
+       
+         }
+          break;
+        case 2:
+          juego.reset();
+          break;
+      }
+    } while (ganador==true);
   }
 
-  public void cambiarJugador(GatoControl jugador){
-
-    if(turno.getTurno()==true){
-
-        turno.setTurno(false);
-
-       }
-       else{
-        turno.setTurno(true);
-        }
-}
 
 }
