@@ -30,6 +30,8 @@ public class App {
 do{
  System.out.println("1.Jugar");
  System.out.println("2.Reset");
+
+
    
    opcion=leer.nextInt();
 

@@ -1,9 +1,9 @@
-import java.nio.file.FileAlreadyExistsException;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
 
-import javax.swing.plaf.synth.SynthOptionPaneUI;
+
 
 public class GatoControl {
     
