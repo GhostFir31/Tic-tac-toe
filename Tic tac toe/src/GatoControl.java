@@ -53,7 +53,7 @@ this.ganador=ganador;
     
 }
 
-public boolean hayGanador(boolean ganador){
+public boolean hayGanador(){
 
     return ganador;
         
@@ -67,21 +67,19 @@ return ficha;
 
 public void hayMostrarGanador(){
  String color;
- if(hayGanador(ganador)==false){
+ if(hayGanador()==false){
 
    System.out.println("No hay Ganador");
 
- }else{
+ }else if(hayGanador()==true){
       if(getFicha()=='X'){
 
             color ="Rojo";
       }else{
  
         color ="Negro";
-
+     System.out.println(" Jugador "+color+" gano el juego");
       }
-    System.out.println(" Jugador "+color+" gano el juego");
-
  }
  
 }
@@ -130,37 +128,43 @@ public boolean colocar(char ficha,int posicion){
 }
 
 public boolean verificaFichaGanadora(){
-
+   
+    
     if(circulos.get(0)==circulos.get(1) && circulos.get(0)==circulos.get(2)){
        
         ganador=true;
+        setGanador(ganador);
     } else if (circulos.get(3)==circulos.get(4) && circulos.get(3)==circulos.get(5)){
         
         ganador=true;
+        setGanador(ganador);
     } else if (circulos.get(6)==circulos.get(7) && circulos.get(6)==circulos.get(8)){
       
         ganador=true;
+        setGanador(ganador);
     } else if (circulos.get(0)==circulos.get(3) && circulos.get(0)==circulos.get(6)){
        
         ganador=true;
+        setGanador(ganador);
     } else if (circulos.get(1)==circulos.get(4) && circulos.get(1)==circulos.get(7)){
         
         ganador=true;
+        setGanador(ganador);
     } else if (circulos.get(2)==circulos.get(5) && circulos.get(2)==circulos.get(8)){
         
         ganador=true;
+        setGanador(ganador);
     } else if (circulos.get(0)==circulos.get(4) && circulos.get(0)==circulos.get(8)){
         
         ganador=true;
+        setGanador(ganador);
     } else if (circulos.get(2)==circulos.get(4) && circulos.get(2)==circulos.get(6)){
         
         ganador=true;
-    } else {
-      
-        ganador=false;
+        setGanador(ganador);
     }
 
-    return ganador;
+    return false;
 } 
 
 public void mostrar(){
@@ -186,30 +190,30 @@ System.out.println(" ");
 
 }
 
-public void reset(){
+public void reset(GatoControl juego, GatoView tablero){
 
 Scanner leer=new Scanner(System.in);
 
-int opcion;
+int eleccion;
 do{
 System.out.println("1)Borrar todas las fichas.");
 System.out.println("2)Conceder el turno al primer jugador.");
 System.out.println("3)Indicar que si hay ganador");
 System.out.println("4)Salir");
 
-opcion=leer.nextInt();
+eleccion=leer.nextInt();
 
-switch(opcion){
 
-case 1: GatoView tablero=new GatoView();
-        GatoControl juego=new GatoControl(); 
-              juego.reset();
+switch(eleccion){
+
+case 1:       inicializaTablero();
+              setTurno(true);
               tablero.reset();
          break;
 case 2: System.out.println("Turno concedido");
          setTurno(true);
          break;
-case 3: System.out.println("ganador:" + hayGanador(ganador) );
+case 3: System.out.println("ganador:" + hayGanador());
          break;
 
 case 4: System.out.println("Salir");
@@ -217,7 +221,7 @@ case 4: System.out.println("Salir");
 
         default:System.out.println("El valor introducido no es valido");
 }
-}while(opcion!=4);
+}while(eleccion!=4);
 
 }
     

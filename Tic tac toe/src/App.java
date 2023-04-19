@@ -21,9 +21,9 @@ public class App {
   }
 
   public void iniciarJuego() {
-    tablero = new GatoView();
+    
     juego = new GatoControl();
-    boolean ganador=false;
+    tablero = new GatoView();
 
     do {
       System.out.println("1.Jugar");
@@ -39,41 +39,31 @@ public class App {
 
           if(posicion>0 && posicion<=9){
 
-         // if (juego.getTurno() == true) {
-
             juego.colocarFicha(posicion);
 
             tablero.dibujarFicha(posicion, juego);
             
-            ganador=juego.verificaFichaGanadora();
+            juego.verificaFichaGanadora();
 
             juego.hayMostrarGanador();
 
             juego.cambiarJugador();
 
-         /*  } else {
-
-            juego.colocarFicha(posicion);
-            tablero.dibujarFicha(posicion, juego);
-            ganador=juego.verificaFichaGanadora();
-            juego.hayMostrarGanador();
-
-            juego.cambiarJugador();
-          }*/
           juego.mostrar();
+
         }else{
 
-
           System.out.println("Solo se puede con numeros del 1 al 9");
-       
-       
+
          }
           break;
         case 2:
-          juego.reset();
+
+          juego.reset(juego,tablero);
+
           break;
       }
-    } while (ganador==true);
+    } while (juego.hayGanador()==true);
   }
 
 
