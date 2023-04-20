@@ -25,9 +25,6 @@ public GatoControl(){
 public ArrayList<Character> inicializaTablero(){
 
     circulos=new ArrayList<>(Collections.nCopies(9, null));
-    setEmpate(false);
-    setGanador(false);
-    setTurno(true);
 
 return circulos;
 
@@ -201,11 +198,9 @@ public void verificaFichaGanadora(){
 }
     else {
        
-        setGanador(false);
         setEmpate(true);
 
     }
-
     
 } 
 
@@ -248,14 +243,17 @@ eleccion=leer.nextInt();
 
 switch(eleccion){
 
-case 1:       inicializaTablero();
+case 1:       circulos=inicializaTablero();
               setTurno(true);
+              setEmpate(false);
+              setGanador(false);
+              setFicha('X');
               tablero.reset();
          break;
 case 2: System.out.println("Turno concedido");
          setTurno(true);
          break;
-case 3: System.out.println("ganador:" + hayGanador());
+case 3: hayMostrarGanador();
          break;
 
 case 4: System.out.println("Salir");

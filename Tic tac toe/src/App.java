@@ -25,6 +25,7 @@ public class App {
   public void iniciarJuego() {
     juego = new GatoControl();
     tablero = new GatoView();
+    boolean espacioValido=true;
       do{
       System.out.println("1.Jugar");
       System.out.println("2.Reset");
@@ -39,25 +40,24 @@ public class App {
 
           if(posicion>0 && posicion<=9){
 
-            juego.colocarFicha(posicion);
+            espacioValido=juego.colocarFicha(posicion);
 
+           if(espacioValido){
             tablero.dibujarFicha(posicion, juego);
-
+           
             juego.verificaFichaGanadora();
 
             juego.cambiarJugador();
-
-          juego.mostrar();
+           }
+          //juego.mostrar();
 
         }else{
 
           System.out.println("Solo se puede con numeros del 1 al 9");
-
+            espacioValido=false;
          } 
          
-         System.out.println("empate "+juego.getEmpate());
-
-        } while (!juego.hayGanador() || juego.getEmpate());
+        } while (!juego.hayGanador() && !juego.getEmpate());
 
            juego.hayMostrarGanador();
 

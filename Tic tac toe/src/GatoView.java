@@ -38,7 +38,7 @@ public class GatoView {
 
   public void dibujarFicha(int posicion,GatoControl jugador) {
 
-    jugador.getTurno();
+    //jugador.getTurno();
 
     switch (posicion) {
       case 1:
