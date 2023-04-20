@@ -33,7 +33,7 @@ public class App {
 
       switch (opcion) {
         case 1:do {
-          System.out.println("Introduzca La posicion que se desea del 1 al 9");
+          System.out.println("Introduzca La posicion " + juego.getFicha() +" que se desea del 1 al 9");
 
           posicion = leer.nextInt();
 
@@ -55,8 +55,10 @@ public class App {
 
          } 
 
-        } while (!juego.hayGanador());
+        } while (!juego.hayGanador() || !juego.getEmpate());
+
            juego.hayMostrarGanador();
+           
           break;
         case 2:
 

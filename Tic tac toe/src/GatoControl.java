@@ -7,6 +7,7 @@ public class GatoControl {
     
  private boolean turno;
  private boolean ganador;
+ private boolean empate;
  private char ficha;
 
  ArrayList <Character> circulos;
@@ -15,7 +16,8 @@ public GatoControl(){
 
     turno=true;
     ganador=false;
-    ficha='n';
+    empate=false;
+    ficha='X';
     circulos=inicializaTablero();
 
 }
@@ -30,8 +32,11 @@ return circulos;
 
 public void cambiarJugador() {
     if (getTurno() == true) {
+      setFicha('O');
       setTurno(false);
+
     } else {
+      setFicha('X');
       setTurno(true);
     }
   }
@@ -65,45 +70,66 @@ return ficha;
 
 }
 
+public void setFicha(char ficha){
+
+    this.ficha=ficha;
+    
+    }
+
+public void setEmpate(boolean empate){
+
+this.empate=empate;
+
+}
+
+public boolean getEmpate(){
+
+    return empate;
+    
+    }
+
 public void hayMostrarGanador(){
  String color;
 
- if(hayGanador()==false){
+ if(getEmpate()==true){
 
-   System.out.println("No hay Ganador");
+   System.out.println("! EMPATE !");
 
  }else if(hayGanador()==true){
 
-      if(getFicha()=='X'){
+      if(getFicha()=='O'){
 
             color ="rojo";
 
-      }else if(getFicha()=='O'){
+            System.out.println("Jugador "+color+" gano el juego.");
+
+      }else if(getFicha()=='X'){
  
         color ="negro";
 
-     System.out.println(" Jugador "+color+" gano el juego.");
+        System.out.println("Jugador "+color+" gano el juego.");
 
       }
+
  }
  
 }
     
 public boolean colocarFicha(int posicion){
-char ficha;
+
 //colobora si esta vacio el espacio ocupado    
 if(circulos.get(posicion-1)==null){
  
     if(getTurno()==true){
-        ficha='X';
-        
-         colocar(ficha,posicion);
+
+         colocar(getFicha(),posicion);
           
         }else
         {
-            ficha='O';
-            colocar(ficha,posicion);
-         circulos.set(posicion-1,ficha);
+
+            colocar(getFicha(),posicion);
+
+         circulos.set(posicion-1,getFicha());
         
         }
    return true;
@@ -166,7 +192,12 @@ public void verificaFichaGanadora(){
        
         setGanador(true);
 
-    } else {
+    }  else if (!circulos.contains(null)){
+       
+        setEmpate(true);
+        
+    }
+    else {
        
         setGanador(false);
 
