@@ -67,18 +67,23 @@ return ficha;
 
 public void hayMostrarGanador(){
  String color;
+
  if(hayGanador()==false){
 
    System.out.println("No hay Ganador");
 
  }else if(hayGanador()==true){
+
       if(getFicha()=='X'){
 
             color ="rojo";
-      }else if(hayGanador()==false){
+
+      }else if(getFicha()=='O'){
  
         color ="negro";
+
      System.out.println(" Jugador "+color+" gano el juego.");
+
       }
  }
  
@@ -127,45 +132,46 @@ public boolean colocar(char ficha,int posicion){
         }
 }
 
-public boolean verificaFichaGanadora(){
+public void verificaFichaGanadora(){
    
-    if(circulos.get(0)==circulos.get(1) && circulos.get(0)==circulos.get(2)){
+    if(circulos.get(0) != null && circulos.get(1) != null && circulos.get(2) != null && circulos.get(0)==circulos.get(1) && circulos.get(0)==circulos.get(2)){
        
-        ganador=true;
+        setGanador(true);
+
+    } else if (circulos.get(3) != null && circulos.get(4) != null && circulos.get(5) != null && circulos.get(3)==circulos.get(4) && circulos.get(3)==circulos.get(5)){
+       
+        setGanador(true);
+
+    } else if (circulos.get(6) != null && circulos.get(7) != null && circulos.get(8) != null && circulos.get(6)==circulos.get(7) && circulos.get(6)==circulos.get(8)){
+       
+        setGanador(true);
+
+    } else if (circulos.get(0) != null && circulos.get(3) != null && circulos.get(6) != null && circulos.get(0)==circulos.get(3) && circulos.get(0)==circulos.get(6)){
+        
+        setGanador(true);
+
+    } else if (circulos.get(1) != null && circulos.get(4) != null && circulos.get(7) != null && circulos.get(1)==circulos.get(4) && circulos.get(1)==circulos.get(7)){
       
-    } else if (circulos.get(3)==circulos.get(4) && circulos.get(3)==circulos.get(5)){
+        setGanador(true);
+
+    } else if (circulos.get(2) != null && circulos.get(5) != null && circulos.get(8) != null && circulos.get(2)==circulos.get(5) && circulos.get(2)==circulos.get(8)){
         
-        ganador=true;
-      
-    } else if (circulos.get(6)==circulos.get(7) && circulos.get(6)==circulos.get(8)){
-      
-        ganador=true;
-    
-    } else if (circulos.get(0)==circulos.get(3) && circulos.get(0)==circulos.get(6)){
+        setGanador(true);
+
+    } else if (circulos.get(0) != null && circulos.get(4) != null && circulos.get(8) != null && circulos.get(0)==circulos.get(4) && circulos.get(0)==circulos.get(8)){
        
-        ganador=true;
-  
-    } else if (circulos.get(1)==circulos.get(4) && circulos.get(1)==circulos.get(7)){
-        
-        ganador=true;
+        setGanador(true);
+
+    } else if (circulos.get(2) != null && circulos.get(4) != null && circulos.get(6) != null && circulos.get(2)==circulos.get(4) && circulos.get(2)==circulos.get(6)){
        
-    } else if (circulos.get(2)==circulos.get(5) && circulos.get(2)==circulos.get(8)){
-        
-        ganador=true;
-        setGanador(ganador);
-    } else if (circulos.get(0)==circulos.get(4) && circulos.get(0)==circulos.get(8)){
-        
-        ganador=true;
+        setGanador(true);
+
+    } else {
        
-    } else if (circulos.get(2)==circulos.get(4) && circulos.get(2)==circulos.get(6)){
-        
-        ganador=true;
-        
+        setGanador(false);
+
     }
-
-    setGanador(ganador);
-
-    return ganador;
+    
 } 
 
 public void mostrar(){
