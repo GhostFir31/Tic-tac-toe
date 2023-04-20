@@ -25,6 +25,9 @@ public GatoControl(){
 public ArrayList<Character> inicializaTablero(){
 
     circulos=new ArrayList<>(Collections.nCopies(9, null));
+    setEmpate(false);
+    setGanador(false);
+    setTurno(true);
 
 return circulos;
 
@@ -91,7 +94,7 @@ public boolean getEmpate(){
 public void hayMostrarGanador(){
  String color;
 
- if(getEmpate()==true){
+ if(getEmpate()==true && hayGanador()==false){
 
    System.out.println("! EMPATE !");
 
@@ -159,7 +162,9 @@ public boolean colocar(char ficha,int posicion){
 }
 
 public void verificaFichaGanadora(){
-   
+
+    if (circulos.contains(null)){
+
     if(circulos.get(0) != null && circulos.get(1) != null && circulos.get(2) != null && circulos.get(0)==circulos.get(1) && circulos.get(0)==circulos.get(2)){
        
         setGanador(true);
@@ -192,16 +197,15 @@ public void verificaFichaGanadora(){
        
         setGanador(true);
 
-    } else if (!circulos.contains(null)){
-       
-        setEmpate(true);
-
-    }
+    } 
+}
     else {
        
         setGanador(false);
+        setEmpate(true);
 
     }
+
     
 } 
 

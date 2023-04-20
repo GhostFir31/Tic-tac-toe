@@ -57,7 +57,7 @@ public class App {
          
          System.out.println("empate "+juego.getEmpate());
 
-        } while (!juego.hayGanador() || !juego.getEmpate());
+        } while (!juego.hayGanador() || juego.getEmpate());
 
            juego.hayMostrarGanador();
 
