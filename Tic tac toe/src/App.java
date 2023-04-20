@@ -54,11 +54,13 @@ public class App {
           System.out.println("Solo se puede con numeros del 1 al 9");
 
          } 
+         
+         System.out.println("empate "+juego.getEmpate());
 
         } while (!juego.hayGanador() || !juego.getEmpate());
 
            juego.hayMostrarGanador();
-           
+
           break;
         case 2:
 

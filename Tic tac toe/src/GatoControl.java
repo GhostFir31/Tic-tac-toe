@@ -192,10 +192,10 @@ public void verificaFichaGanadora(){
        
         setGanador(true);
 
-    }  else if (!circulos.contains(null)){
+    } else if (!circulos.contains(null)){
        
         setEmpate(true);
-        
+
     }
     else {
        
