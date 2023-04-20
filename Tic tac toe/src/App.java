@@ -1,7 +1,5 @@
 import java.util.Scanner;
 
-import javax.swing.plaf.synth.SynthSplitPaneUI;
-
 public class App {
 
   private Scanner leer = new Scanner(System.in);
@@ -49,7 +47,7 @@ public class App {
 
             juego.cambiarJugador();
            }
-          //juego.mostrar();
+          
 
         }else{
 
