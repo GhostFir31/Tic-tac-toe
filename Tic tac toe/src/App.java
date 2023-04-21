@@ -8,7 +8,7 @@ public class App {
 
   private GatoControl juego; // turno /jugador
 
- // private GatoControl turno;
+  // private GatoControl turno;
 
   private int posicion;
 
@@ -23,60 +23,60 @@ public class App {
   public void iniciarJuego() {
     juego = new GatoControl();
     tablero = new GatoView();
-    boolean espacioValido=true;
-      do{
+    boolean espacioValido = true;
+    do {
       System.out.println("1.Jugar");
       System.out.println("2.Reset");
       System.out.println("3.Salir");
       opcion = leer.nextInt();
 
       switch (opcion) {
-        case 1:do {
-          System.out.println("Introduzca La posicion " + juego.getFicha() +" que se desea del 1 al 9");
+        case 1:
+          do {
+            System.out.println("Introduzca La posicion " + juego.getFicha() + " que se desea del 1 al 9");
 
-          posicion = leer.nextInt();
+            posicion = leer.nextInt();
 
-          if(posicion>0 && posicion<=9){
+            if (posicion > 0 && posicion <= 9) {
 
-            espacioValido=juego.colocarFicha(posicion);
+              espacioValido = juego.colocarFicha(posicion);
 
-           if(espacioValido){
-            tablero.dibujarFicha(posicion, juego);
-           
-            juego.verificaFichaGanadora();
+              if (espacioValido) {
+                tablero.dibujarFicha(posicion, juego);
 
-            juego.cambiarJugador();
-           }
-          
+                juego.verificaFichaGanadora();
 
-        }else{
+                juego.cambiarJugador();
+              }
 
-          System.out.println("Solo se puede con numeros del 1 al 9");
-            espacioValido=false;
-         } 
-         
-        } while (!juego.hayGanador() && !juego.getEmpate());
+            } else {
 
-           juego.hayMostrarGanador();
+              System.out.println("Solo se puede con numeros del 1 al 9");
+              espacioValido = false;
+            }
+
+          } while (!juego.hayGanador() && !juego.getEmpate());
+
+          juego.hayMostrarGanador();
 
           break;
         case 2:
 
-          juego.reset(juego,tablero);
+          juego.reset(juego, tablero);
 
           break;
         case 3:
 
-         System.out.println("Saliendo");
+          System.out.println("Saliendo");
 
           break;
-        
-          default:System.out.println("Error ponga una opcion en el menu");
+
+        default:
+          System.out.println("Error ponga una opcion en el menu");
       }
-    
-     } while(opcion!=3);
+
+    } while (opcion != 3);
 
   }
-
 
 }

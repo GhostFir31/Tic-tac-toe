@@ -3,7 +3,7 @@ import java.awt.*;
 /**
  * A square that can be manipulated and that draws itself on a canvas.
  *
- * @author  Michael Kölling and David J. Barnes
+ * @author Michael Kölling and David J. Barnes
  * @version 2016.02.29
  */
 
@@ -153,7 +153,8 @@ public class Square {
   }
 
   /**
-   * Change the color. Valid colors are "red", "yellow", "blue", "verde electrico destroza vistas",
+   * Change the color. Valid colors are "red", "yellow", "blue", "verde electrico
+   * destroza vistas",
    * "rosa bebe recien nacido" and "cafe chocolate hersheys con almendras".
    */
   public void changeColor(String newColor) {
